@@ -5,12 +5,12 @@ import withRefetch from '../hoc/withRefetch';
 import FooterLoading from '../FooterLoading';
 import { filterDuplicateMovies } from '../../utils/movies';
 import MovieList from './MovieList';
-
-class MovieFetchList extends React.Component {
+import Theme from '../../Theme';	
+class MoviesFetchList extends React.Component {
   state = {
     movies: [],
-    isInitialLoading: false,
-    isPaginationLoading: true,
+    isInitialLoading: true,
+    isPaginationLoading: false,
     refreshing: false
   };
 
@@ -73,13 +73,13 @@ class MovieFetchList extends React.Component {
   };
 
   async fetchNextPage() {
-    const { fetchFunction, refetch } = nextProps || this.props;
+    const { fetchFunction, refetch } = this.props;
     this.setState({ isPaginationLoading: true });
 
     const { movies: moviesBeforeFetch } = this.state;
     const data = await refetch.fetchUntilSuccess(() => fetchFunction({ page: this.page + 1 }));
     const { movies } = this.state;
-    const moviesProps = {}
+    const moviesProps = {};
 
     if (movies === moviesBeforeFetch) {
       moviesProps.movies = filterDuplicateMovies([...movies, ...data.movies]);
@@ -105,7 +105,7 @@ class MovieFetchList extends React.Component {
   renderMovieList = () => {
     const { withRefresh, withPagination, ...props } = this.props;
     const { movies, refreshing, isPaginationLoading } = this.state;
-    const refreshProps = withRefresh ? { refresh, onRefresh: this.onRefresh } : {};
+    const refreshProps = withRefresh ? { refreshing, onRefresh: this.onRefresh } : {};
 
     const paginationProps = withPagination
     ? {
@@ -145,14 +145,14 @@ const styles = StyleSheet.create({
   },
 });
 
-MovieFetchList.propTypes = {
+MoviesFetchList.propTypes = {
   fetchFunction: PropTypes.func.isRequired,
   withRefresh: PropTypes.bool,
   withPagination: PropTypes.bool
 };
 
-MovieFetchList.defaultProps = {
+MoviesFetchList.defaultProps = {
   withRefresh: true,
   withPagination: true
 };
-export default withRefetch(MovieFetchList);
+export default withRefetch(MoviesFetchList);

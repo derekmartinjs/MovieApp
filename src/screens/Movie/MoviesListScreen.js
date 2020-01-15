@@ -1,14 +1,34 @@
 import React from 'react';
-import { View, Text} from 'react-native';
+import { withMappedNavigationProps } from 'react-navigation-props-mapper';
+import { View, Text, StyleSheet } from 'react-native';
+import MovieFetchList from '../../components/MovieComponents/MovieFetchList';
+import withDelayedLoading from '../../components/hoc/withDelayedLoading';
+import Theme from '../../Theme';
 
 class MoviesListScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.getParam('title', '')
+  });
+
   render() {
+    const { fetchFunction } = this.props;
+
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>MoviesListScreen</Text>
+      <View style={styles.container}>
+        <MovieFetchList
+          fetchFunction={fetchFunction}
+        />
       </View>
     );
   }
 }
 
-export default MoviesListScreen;
+const styles = StyleSheet.create({
+  container: {
+
+  }
+});
+
+ export default withDelayedLoading(MoviesListScreen);
+
+// export default withMappedNavigationProps()(withDelayedLoading(MoviesListScreen));

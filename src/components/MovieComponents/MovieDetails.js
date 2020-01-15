@@ -104,7 +104,7 @@ class MovieDetails extends Component {
       </View>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
