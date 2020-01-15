@@ -13,6 +13,28 @@ platform :ios do
     match(app_identifier: 'org.parallelapps.movieapp', type: 'development', readonly: true)
     match(app_identifier: 'org.parallelapps.movieapp', type: 'appstore', readonly: true)
   end
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    increment_build_number(xcodeproj: "./ios/MovieApp.xcodeproj")
+    build_app(workspace: "./ios/MovieApp.xcworkspace", scheme: "MovieApp")
+    upload_to_testflight
+  end
+
+  desc 'Build the iOS application.'
+  private_lane :build do
+    certificates
+    increment_build_number(xcodeproj: './ios/MovieApp.xcodeproj')
+    gym(scheme: 'name', project: './ios/MovieApp.xcodeproj')
+  end
+
+#  desc 'Ship to Testflight.'
+#  lane :beta do
+#    build
+#    pilot
+#    commit_version_bump(message: 'Bump build', xcodeproj: './ios/MovieApp.xcodeproj')
+#    push_to_git_remote
+#  end
 end
 
 platform :android do
