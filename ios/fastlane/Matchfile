@@ -1,4 +1,4 @@
-git_url("https://derekmartinsf@github.com/derekmartinsf/MovieAppProduction.git")
+git_url("https://github.com/derekmartinsf/MovieAppProduction")
 
 storage_mode("git")
 

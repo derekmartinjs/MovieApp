@@ -15,26 +15,26 @@
 
 default_platform(:ios)
 
+lane :prepare4Release do
+  desc "copy resource of #{PROFILE_NAME} into relative folder"
+
+  #copy resource of iOS
+  sh("cp -rf ../profiles/#{PROFILE_NAME}/ios/Images.xcassets/ ../ios/TARGET_NAME/Images.xcassets/")
+
+  #copy resource of Android
+  sh("cp -rf ../profiles/#{PROFILE_NAME}/android/ ../android/app/src/main/res/")
+end
+
 platform :ios do
+#  desc "Push a new beta build to TestFlight"
+#  lane :beta do
+#    increment_build_number(xcodeproj: "MovieApp.xcodeproj")
+#    build_app(workspace: "MovieApp.xcworkspace", scheme: "MovieApp")
+# end
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    increment_build_number(xcodeproj: "MovieApp.xcodeproj")
-    build_app(workspace: "MovieApp.xcworkspace", scheme: "MovieApp")
-    upload_to_testflight
-  end
-
-  desc 'Build the iOS application.'
-  private_lane :build do
-    certificates
-    increment_build_number(xcodeproj: './ios/MovieApp.xcodeproj')
-    gym(scheme: 'name', project: './ios/MovieApp.xcodeproj')
-  end
-
-  desc 'Ship to Testflight.'
-  lane :beta do
-    build
-    pilot
-    commit_version_bump(message: 'Bump build', xcodeproj: './ios/MovieApp.xcodeproj')
-    push_to_git_remote
+    cert
+    sigh(force: true)
   end
 end
