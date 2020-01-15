@@ -5,7 +5,8 @@ import withRefetch from '../hoc/withRefetch';
 import FooterLoading from '../FooterLoading';
 import { filterDuplicateMovies } from '../../utils/movies';
 import MovieList from './MovieList';
-import Theme from '../../Theme';	
+import Theme from '../../Theme';
+
 class MoviesFetchList extends React.Component {
   state = {
     movies: [],
