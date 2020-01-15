@@ -7,7 +7,7 @@ import Theme from '../../Theme';
 
 class MoviesListScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam('title', '')
+    title: navigation.getParam('title', ' ')
   });
 
   render() {
@@ -15,9 +15,7 @@ class MoviesListScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <MovieFetchList
-          fetchFunction={fetchFunction}
-        />
+        <MovieFetchList fetchFunction={fetchFunction} />
       </View>
     );
   }
@@ -25,10 +23,10 @@ class MoviesListScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-
+    flex: 1,
+    backgroundColor: Theme.colors.background
   }
 });
 
- export default withDelayedLoading(MoviesListScreen);
-
+export default withMappedNavigationProps()(withDelayedLoading(MoviesListScreen));
 // export default withMappedNavigationProps()(withDelayedLoading(MoviesListScreen));

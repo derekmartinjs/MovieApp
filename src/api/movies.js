@@ -159,6 +159,24 @@ export const fetchFavoriteMovies = ({ page }, reqParams = {}) =>
     }
   });
 
+export const fetchWatchlistMovies = ({ page }, reqParams = {}) =>
+  new Promise(async (resolve, reject) => {
+    const url = getWatchlistUrl({
+      page,
+      sessionId: getCurrentUsersSessionId(),
+      accountId: getCurrentUsersAccountId()
+    });
+
+    try {
+      const { data } = await axios.get(url, reqParams);
+      addParsedMoviesToData(data);
+      resolve(data);
+    } catch (error) {
+      Config.logNetworkErrors && console.log(error);
+      reject(error);
+    }
+  });
+
 // ------------------------------------------------------
 // Explore movies
 // ------------------------------------------------------
@@ -179,9 +197,6 @@ export const fetchMovieToExplore = isMovieSeen =>
         page++;
       }
 
-      console.log('explored movies...');
-      console.log(moviesToExplore);
-      
       resolve(moviesToExplore);
     } catch(error) {
       Config.logNetworkErrors && console.log(error);

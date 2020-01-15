@@ -92,7 +92,6 @@ class ExploreMovieDeck extends React.PureComponent {
   isMovieSeen = movie => {
     const { movies } = this.state;
     const key = movieKeyExtractor(movie);
-    console.log(`key: ${key}`)
     const isInCurrentMovies = !!movies.find(cMovie => movieKeyExtractor(cMovie) === key);
     const isInRequests = !!this.requests.find(({ rqMovie }) => movieKeyExtractor(rqMovie) === key);
     const wasExplored = this.exploredMovies[key];

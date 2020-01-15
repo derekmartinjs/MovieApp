@@ -11,14 +11,12 @@ import Theme from '../../Theme';
 class MoviesHorizontalScroll extends React.PureComponent {
   onMorePress = () => {
     const { title, fetchFunction, navigation } = this.props;
-    console.log('route names:');
-    console.log(RouteNames);
     navigation.push(RouteNames.MovieListScreen, { title, fetchFunction});
   };
 
   render() {
     const { title, movies, style } = this.props;
-    
+
     return (
       <View style={[styles.container, style]}>
           <View style={styles.topWrapper}>

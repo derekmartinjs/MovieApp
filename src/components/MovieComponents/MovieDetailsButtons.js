@@ -61,8 +61,6 @@ class MovieDetailsButtons extends React.PureComponent {
     } finally {
       this.setState({ isFavoriteFetching: false });
     }
-
-    console.log(this.state);
   };
 
   initialMovieFetch() {
