@@ -13,6 +13,9 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+MY_APP_ID = "org.parallelapps.movieapp"
+MY_PROFILE = "match AppStore org.parallelapps.movieapp"
+
 default_platform(:ios)
 
 lane :prepare4Release do
@@ -34,7 +37,35 @@ platform :ios do
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    cert
-    sigh(force: true)
+    build
+    pilot
+    commit_version_bump(message: 'Bump build', xcodeproj: './MovieApp.xcodeproj')
+    push_to_git_remote
+  end
+
+  desc 'Fetch certificates and provisioning profiles'
+  lane :certificates do
+    match(app_identifier: 'org.parallelapps.movieapp', type: 'development', readonly: true)
+    match(app_identifier: 'org.parallelapps.movieapp', type: 'appstore', readonly: true)
+  end
+
+  lane :build do
+    certificates
+    increment_build_number(xcodeproj: './MovieApp.xcodeproj')
+    gym(scheme: 'MovieApp', project: './MovieApp.xcodeproj')
+  end
+
+  lane :release do
+    sync_code_signing
+    disable_automatic_code_signing(path: './MovieApp.xcodeproj')
+    build_app
+    enable_automatic_code_signing(path: './MovieApp.xcodeproj')
+    upload_to_testflight
+#    produce(
+#      username: "derekmartin1@gmail.com",
+#      app_identifier: "org.parallelapps.movieapp",
+#      app_name: "MovieApp for iOS",
+##      app_version: "1.0",
+  #  )
   end
 end

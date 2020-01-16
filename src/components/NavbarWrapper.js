@@ -45,22 +45,15 @@ class NavbarWrapper extends React.Component {
   render() {
     return (
       <View>
-          {/*
-
-            <Animated.View style={styles.noConnectionContainer, this.getAnimatedStyle()}>
-            <AppText style={styles.noConnectionText} type="caption2">
-              No Connection
-            </AppText>
-          </Animated.View>
-
-          */}
+        <Animated.View style={[styles.noConnectionContainer, this.getAnimatedStyle()]}>
+          <AppText style={styles.noConnectionText} type="caption2">
+            No Connection
+          </AppText>
+        </Animated.View>
         <BottomTabBar {...this.props} />
+        <NetworkConsumer>{this.onNetworkChange}</NetworkConsumer>
       </View>
     );
-    /*
-      <NetworkConsumer>{this.onNetworkChange}</NetworkConsumer>
-
-    */
   }
 }
 

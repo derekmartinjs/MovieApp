@@ -29,6 +29,21 @@ fastlane prepare4Release
 fastlane ios beta
 ```
 Push a new beta build to TestFlight
+### ios certificates
+```
+fastlane ios certificates
+```
+Fetch certificates and provisioning profiles
+### ios build
+```
+fastlane ios build
+```
+
+### ios release
+```
+fastlane ios release
+```
+
 
 ----
 

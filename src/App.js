@@ -5,14 +5,26 @@ import { NetworkProvider } from 'react-native-offline';
 
 import store from './store';
 import { RootStack } from './Routes';
+import firebase from 'react-native-firebase';
+
+const Analytics = firebase.analytics();
+const defaultAppCrashlytics = firebase.crashlytics();
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    Analytics.setAnalyticsCollectionEnabled(true);
+    Analytics.logEvent("app_launch");
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <View style={{flex: 1}}>
-          <RootStack />
-        </View>
+        <NetworkProvider>
+          <View style={{flex: 1}}>
+            <RootStack />
+          </View>
+        </NetworkProvider>
       </Provider>
     );
   }

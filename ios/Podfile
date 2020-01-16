@@ -34,8 +34,15 @@ target 'MovieApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
+#  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
 
+#  pod 'Fabric', '~> 1.10.2'
+#  pod 'Crashlytics', '~> 3.14.0'
 
+  pod 'GoogleIDFASupport', '~> 3.14.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
 
   pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
 

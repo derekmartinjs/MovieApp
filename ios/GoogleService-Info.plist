@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>242202663152-49h147tp14m86d9ag7s79i20klq1d6u3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.242202663152-49h147tp14m86d9ag7s79i20klq1d6u3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCrSZB2Antbf7dwe7DHNn1jRTdj64yoxHs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>242202663152</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.parallelapps.movieapp</string>
+	<key>PROJECT_ID</key>
+	<string>movieapp-1ce47</string>
+	<key>STORAGE_BUCKET</key>
+	<string>movieapp-1ce47.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:242202663152:ios:52ee8df1f2430c8ace4a35</string>
+	<key>DATABASE_URL</key>
+	<string>https://movieapp-1ce47.firebaseio.com</string>
+</dict>
+</plist>
