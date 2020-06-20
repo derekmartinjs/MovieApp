@@ -37,7 +37,7 @@ platform :ios do
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    build
+    build_ios_app(export_method: 'development')
     pilot
     commit_version_bump(message: 'Bump build', xcodeproj: './MovieApp.xcodeproj')
     push_to_git_remote

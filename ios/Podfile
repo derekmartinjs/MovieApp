@@ -47,6 +47,9 @@ target 'MovieApp' do
   pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
 
   target 'MovieAppTests' do
     inherit! :search_paths
